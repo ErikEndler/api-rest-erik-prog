@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: apirest
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: erik_
+Implementation-Vendor-Id: com.prudtos
+Build-Jdk: 1.8.0_211
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/apirest
+Created-By: Maven Integration for Eclipse
+
