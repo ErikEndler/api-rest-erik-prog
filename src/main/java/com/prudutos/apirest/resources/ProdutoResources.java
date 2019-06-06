@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,8 +37,8 @@ public class ProdutoResources {
 	
 	@ApiOperation(value="Retorna uma lista de Produtos")
 	@GetMapping("/produtos")
-	public ResponseEntity<List<Produto>>  listaProdutos(){
-		return new ResponseEntity<>( produtoRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<?>  listaProdutos(Pageable pageable){
+		return new ResponseEntity<>( produtoRepository.findAll(pageable), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value="Retorna um produto unico")

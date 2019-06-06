@@ -1,30 +1,33 @@
 package com.prudutos.apirest.models;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="TB_PRODUTO")
-public class Produto extends AbstractEntity {
+public class Produto extends AbstractEntity {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	
+	@NotEmpty
 	@NotNull
-	@Length(max=50) 
 	private String nome;
 
 	@NotNull
-	private int quantidade;
+	private BigDecimal quantidade;
 	
 	@NotNull
-	private double valor;
+	private BigDecimal valor;
+	
+	@ManyToOne
+	private Categoria categoria;
 	
 
 	public String getNome() {
@@ -33,17 +36,23 @@ public class Produto extends AbstractEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getQuantidade() {
+	public BigDecimal getQuantidade() {
 		return quantidade;
 	}
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(BigDecimal quantidade) {
 		this.quantidade = quantidade;
 	}
-	public double getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
-	public void setValor(double valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 }
