@@ -29,9 +29,16 @@ public class Produto extends AbstractEntity {
 	@ManyToOne
 	private Categoria categoria;
 	
-	private String teste;
+	@ManyToOne
+	private Cliente cliente;
 	
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -55,12 +62,6 @@ public class Produto extends AbstractEntity {
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-	public String getTeste() {
-		return teste;
-	}
-	public void setTeste(String teste) {
-		this.teste = teste;
 	}
 
 }

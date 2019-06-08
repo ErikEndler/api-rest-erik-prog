@@ -1,10 +1,9 @@
 package com.prudutos.apirest.resources;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +33,8 @@ public class ProdutoResources {
 	
 	@ApiOperation(value="Retorna uma lista de Produtos")
 	@GetMapping("/produtos")
-	public List<Produto>  listaProdutos(){
-		return  (List<Produto>) produtoRepository.findAll();
+	public Iterable<Produto>  listaProdutos(Pageable pageable){
+		return  produtoRepository.findAll(pageable);
 	}
 	
 	@ApiOperation(value="Retorna um produto unico")

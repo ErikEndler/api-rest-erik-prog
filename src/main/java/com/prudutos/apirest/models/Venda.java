@@ -1,7 +1,5 @@
 package com.prudutos.apirest.models;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,23 +12,35 @@ public class Venda extends AbstractEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private BigDecimal ValorTotal;
+	@NotNull
+	private String data;
 	
 	private String Obs;
 	
-	@NotNull
-	private String vendedor;
-	
 	@ManyToOne
 	private Produto produto;
+	
+	@ManyToOne
+	private Vendedor vendedor;
+	
+	@ManyToOne
+	private Cliente cliente;
 
-	public BigDecimal getValorTotal() {
-		return ValorTotal;
+
+	public String getData() {
+		return data;
 	}
 
-	public void setValorTotal(BigDecimal valorTotal) {
-		ValorTotal = valorTotal;
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public String getObs() {
@@ -41,11 +51,11 @@ public class Venda extends AbstractEntity {
 		Obs = obs;
 	}
 
-	public String getVendedor() {
+	public Vendedor getVendedor() {
 		return vendedor;
 	}
 
-	public void setVendedor(String vendedor) {
+	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
 
