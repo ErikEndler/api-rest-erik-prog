@@ -64,7 +64,7 @@ public class CategoriaResources {
 	
 	private void verifyIfCategoriaExists(long id) {
 		if(categoriaRepository.findById(id)==null) {
-			throw new  ResourceNotFoundException("Produto not found for ID: "+id);
+			throw new  ResourceNotFoundException("Categoria not found for ID: "+id);
 		}
 		
 	}
