@@ -4,6 +4,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -27,23 +28,18 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.prudutos.apirest"))
                 .paths(regex("/api.*"))
                 .build()
-                .apiInfo(metaInfo());
+                .apiInfo(metaData());
     }
 
-    private ApiInfo metaInfo() {
-
-        ApiInfo apiInfo = new ApiInfo(
-                "Produtos API REST",
-                "API REST de cadastro de produtos.",
-                "1.0",
-                "Terms of Service",
-                new Contact("Erik Santos Endler", "Tel: (62)99150-7989",
-                        " email: eng.erik.endler@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
-        );
-
-        return apiInfo;
+	private ApiInfo metaData() {
+        return new ApiInfoBuilder()
+                .title("Spring Boot REST API")
+                .description("\"Spring Boot REST API para Vendas\"")
+                .version("1.0.0")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .contact(new Contact("Erik Santos Endler", "https://github.com/ErikEndler/api-rest-erik-prog", "eng.erik.endler@gmail.com"))
+                .build();
     }
 
 }
