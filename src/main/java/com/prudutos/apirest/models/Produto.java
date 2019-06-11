@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_PRODUTO")
-public class Produto extends AbstractEntity {	
+public class Produto extends AbstractModelo {	
+
 	/**
 	 * 
 	 */
@@ -28,17 +29,7 @@ public class Produto extends AbstractEntity {
 	
 	@ManyToOne
 	private Categoria categoria;
-	
-	@ManyToOne
-	private Cliente cliente;
-	
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+		
 	public String getNome() {
 		return nome;
 	}

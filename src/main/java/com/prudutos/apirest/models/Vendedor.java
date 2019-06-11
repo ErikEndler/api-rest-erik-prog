@@ -6,7 +6,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_VENDEDOR")
-public class Vendedor extends AbstractEntity{
+public class Vendedor extends AbstractModelo{
+	
 	/**
 	 * 
 	 */

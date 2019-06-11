@@ -24,50 +24,49 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/api")
-@Api(value="API REST Produtos")
+@RequestMapping(value = "/api")
+@Api(value = "API REST Produtos")
 @CrossOrigin(origins = "*")
 public class ClienteResources {
 	@Autowired
 	ClienteRepository clienteRepository;
-	
-	@ApiOperation(value="Retorna uma lista de clientes")
+
+	@ApiOperation(value = "Retorna uma lista de clientes")
 	@GetMapping("/cliente")
-	public ResponseEntity<?>  listaClientes(Pageable pageable){
-		return new ResponseEntity<>( clienteRepository.findAll(pageable), HttpStatus.OK);
+	public ResponseEntity<?> listaClientes(Pageable pageable) {
+		return new ResponseEntity<>(clienteRepository.findAll(pageable), HttpStatus.OK);
 	}
-	
-	@ApiOperation(value="Retorna um cliente unico")
+
+	@ApiOperation(value = "Retorna um cliente unico")
 	@GetMapping("/cliente/{id}")
-	public Cliente listaClienteUnico(@PathVariable(value="id") long id){
-		verifyIfClienteExists(id);			
+	public Cliente listaClienteUnico(@PathVariable(value = "id") long id) {
+		verifyIfClienteExists(id);
 		return clienteRepository.findById(id);
 	}
-	
-	@ApiOperation(value="Salva um cliente")
+
+	@ApiOperation(value = "Salva um cliente")
 	@PostMapping("/cliente")
 	public Cliente salvaCliente(@RequestBody @Valid Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
-	
-	@ApiOperation(value="Deleta um cliente")
+
+	@ApiOperation(value = "Deleta um cliente")
 	@DeleteMapping("/cliente")
 	public void deletaCliente(@RequestBody @Valid Cliente cliente) {
 		clienteRepository.delete(cliente);
 	}
-	
-	@ApiOperation(value="Atualiza um cliente")
+
+	@ApiOperation(value = "Atualiza um cliente")
 	@PutMapping("/cliente")
 	public Cliente atualizaCliente(@RequestBody @Valid Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
-	
-	private void verifyIfClienteExists(long id) {
-		if(clienteRepository.findById(id)==null) {
-			throw new  ResourceNotFoundException("Cliente not found for ID: "+id);
-		}
-		
-	}
 
+	private void verifyIfClienteExists(long id) {
+		if (clienteRepository.findById(id) == null) {
+			throw new ResourceNotFoundException("Cliente not found for ID: " + id);
+		}
+
+	}
 
 }

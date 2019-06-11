@@ -1,6 +1,6 @@
 package com.prudutos.apirest.errors;
 
-public class ValidationErrorDetails extends ErrorDetail {
+public class ValidationErrorDetails extends ErrorDetails {
 	
 	private String field;
 	private String fieldMessage;

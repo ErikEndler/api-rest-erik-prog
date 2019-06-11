@@ -52,18 +52,20 @@ public class VendedorResources {
 	@ApiOperation(value="Deleta um Vendedor")
 	@DeleteMapping("/vendedor")
 	public void deletaVenda(@RequestBody @Valid Vendedor vendedor) {
+		verifyIfVendedorExists(vendedor.getId());
 		vendedorRepository.delete(vendedor);
 	}
 	
 	@ApiOperation(value="Atualiza um Vendedor")
 	@PutMapping("/vendedor")
 	public Vendedor atualizaVenda(@RequestBody @Valid Vendedor vendedor) {
+		verifyIfVendedorExists(vendedor.getId());
 		return vendedorRepository.save(vendedor);
 	}
 	
 	private void verifyIfVendedorExists(long id) {
 		if(vendedorRepository.findById(id)==null) {
-			throw new  ResourceNotFoundException("Venda not found for ID: "+id);
+			throw new  ResourceNotFoundException("Vendedor not found for ID: "+id);
 		}		
 	}
 

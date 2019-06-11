@@ -2,7 +2,7 @@ package com.prudutos.apirest.errors;
 
 import javax.annotation.Generated;
 
-public class ResourceNotFoundDetails extends ErrorDetail {
+public class ResourceNotFoundDetails extends ErrorDetails {
 
 
 	@Generated("SparkTools")

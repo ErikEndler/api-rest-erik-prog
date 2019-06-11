@@ -7,11 +7,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_VENDA")
-public class Venda extends AbstractEntity {	
+public class Venda extends AbstractModelo {	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	private String data;
 	

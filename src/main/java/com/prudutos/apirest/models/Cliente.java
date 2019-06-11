@@ -2,22 +2,22 @@ package com.prudutos.apirest.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="TB_CLIENTE")
-public class Cliente extends AbstractEntity {
-
+public class Cliente extends AbstractModelo {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@NotNull
+	@NotBlank
 	private String nome;
-	@NotNull
+	@NotBlank
 	private String cpf;
-	@NotNull
+	@NotBlank
 	private String telefone;
 	
 	public String getNome() {

@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable{
+public abstract class AbstractModelo implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,12 +43,12 @@ public abstract class AbstractEntity implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractEntity other = (AbstractEntity) obj;
+		AbstractModelo other = (AbstractModelo) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-	
+
 	
 
 }
