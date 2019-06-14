@@ -17,7 +17,7 @@ public class CategoriaControl implements InterfaceControl<Categoria> {
 	@Override
 	public Categoria listar(long id) {
 		verifyIfObjectExists(id);
-		return null; //categoriaRepository.findById(id);
+		return categoriaRepository.findById(id); //categoriaRepository.findById(id);
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,9 +47,14 @@ public class CategoriaResources implements InterfaceResources<Categoria> {
 	@Override
 	@ApiOperation(value = "Retorna uma categoria unica")
 	@GetMapping("/categoria/{id}")
-	public Categoria listar(@PathVariable(value="id")long id) {
-		
+	public Categoria listar(@PathVariable(value="id")long id) {		
 		return controle.listar(id);
+	}
+	@ApiOperation(value = "Retorna uma categoria unica com ResponseEntity")
+	@GetMapping("/categoriaRES/{id}")
+	public ResponseEntity<Categoria> listarResponse(@PathVariable(value="id")long id){
+		return new ResponseEntity<>(controle.listar(id), HttpStatus.OK);
+		
 	}
 
 	@Override
