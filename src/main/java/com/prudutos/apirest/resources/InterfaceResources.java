@@ -3,7 +3,9 @@ package com.prudutos.apirest.resources;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public interface InterfaceResources<MODELO> {
 	
 	public Iterable<MODELO> listarTodosPagable(Pageable pageable);
@@ -18,7 +20,7 @@ public interface InterfaceResources<MODELO> {
 	
 	public void deletar( MODELO modelo);
 	
-	public void deleteById(long id);
+	public void deleteById( long id);
 	
 	
 

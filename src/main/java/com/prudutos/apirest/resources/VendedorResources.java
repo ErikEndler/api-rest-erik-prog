@@ -1,5 +1,7 @@
 package com.prudutos.apirest.resources;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,50 +25,67 @@ import io.swagger.annotations.ApiOperation;
 
 
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/api/vendedor")
 @Api(value="API REST Produtos")
 @CrossOrigin(origins = "*")
-public class VendedorResources {
+public class VendedorResources implements InterfaceResources<Vendedor> {
 	@Autowired
-	VendedorRepository vendedorRepository;
-	
+	VendedorRepository vendedorRepository;			
+
+	@Override
+	@ApiOperation(value="Retorna uma lista de Vendedores com Pageable")
+	@GetMapping("/pageable")
+	public Iterable<Vendedor> listarTodosPagable(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	@ApiOperation(value="Retorna uma lista de Vendedores")
-	@GetMapping("/vendedores")
-	public Iterable<Vendedor>  listaVendas(Pageable pageable){
-		return   vendedorRepository.findAll(pageable);
+	@GetMapping("")
+	public Iterable<Vendedor> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+	@Override
 	@ApiOperation(value="Retorna um Vendedor unico")
-	@GetMapping("/vendedor/{id}")
-	public Vendedor listaVendaUnico(@PathVariable(value="id") long id){
-		verifyIfVendedorExists(id);			
-		return vendedorRepository.findById(id);
+	@GetMapping("/{id}")
+	public Optional<Vendedor> listar(@PathVariable(value="id") long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+	@Override
 	@ApiOperation(value="Salva um Vendedor")
-	@PostMapping("/vendedor")
-	public Vendedor salvaVenda(@RequestBody @Valid Vendedor vendedor) {
-		return vendedorRepository.save(vendedor);
+	@PostMapping("")
+	public Vendedor salvar(@RequestBody @Valid Vendedor modelo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@ApiOperation(value="Deleta um Vendedor")
-	@DeleteMapping("/vendedor")
-	public void deletaVenda(@RequestBody @Valid Vendedor vendedor) {
-		verifyIfVendedorExists(vendedor.getId());
-		vendedorRepository.delete(vendedor);
-	}
-	
+
+	@Override
 	@ApiOperation(value="Atualiza um Vendedor")
-	@PutMapping("/vendedor")
-	public Vendedor atualizaVenda(@RequestBody @Valid Vendedor vendedor) {
-		verifyIfVendedorExists(vendedor.getId());
-		return vendedorRepository.save(vendedor);
+	@PutMapping("")
+	public Vendedor atualizar(@RequestBody @Valid Vendedor modelo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	private void verifyIfVendedorExists(long id) {
-		if(vendedorRepository.findById(id)==null) {
-			throw new  ResourceNotFoundException("Vendedor not found for ID: "+id);
-		}		
+
+	@Override
+	@ApiOperation(value="Deleta um Vendedor por Objeto")
+	@DeleteMapping("")
+	public void deletar(@RequestBody @Valid Vendedor modelo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	@ApiOperation(value="Deleta um Vendedor por ID")
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable(value="id") long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
