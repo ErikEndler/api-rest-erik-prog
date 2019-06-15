@@ -8,6 +8,8 @@ import com.prudutos.apirest.errors.ResourceNotFoundException;
 import com.prudutos.apirest.models.Categoria;
 import com.prudutos.apirest.repository.CategoriaRepository;
 
+import net.bytebuddy.build.Plugin.Engine.Source.Empty;
+
 @Service
 public class CategoriaControl implements InterfaceControl<Categoria> {
 
@@ -22,6 +24,8 @@ public class CategoriaControl implements InterfaceControl<Categoria> {
 
 	@Override
 	public Categoria salvar(Categoria t) {
+		//t.setId(0);
+		//System.out.println("imprimindo"+t.getId());
 		return categoriaRepository.save(t);
 	}
 
@@ -54,7 +58,7 @@ public class CategoriaControl implements InterfaceControl<Categoria> {
 	@Override
 	public void verifyIfObjectExists(long id) {
 		if (categoriaRepository.findById(id) == null) {
-			throw new ResourceNotFoundException("Categoria not found for ID: " + id);
+			throw new ResourceNotFoundException("=( Categoria not found for ID: " + id);
 		}
 	}
 

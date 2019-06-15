@@ -1,11 +1,11 @@
 package com.prudutos.apirest.resources;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,57 +16,69 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prudutos.apirest.errors.ResourceNotFoundException;
+import com.prudutos.apirest.controle.ClienteControle;
 import com.prudutos.apirest.models.Cliente;
-import com.prudutos.apirest.repository.ClienteRepository;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/cliente")
 @Api(value = "API REST Produtos")
 @CrossOrigin(origins = "*")
-public class ClienteResources {
+public class ClienteResources implements InterfaceResources<Cliente> {
+	
 	@Autowired
-	ClienteRepository clienteRepository;
+	ClienteControle clienteControle = new ClienteControle();
+	
 
+	@Override
+	@ApiOperation(value = "Retorna uma lista de clientes com Pageable")
+	@GetMapping("/Pageable")
+	public Iterable<Cliente> listarTodosPagable(Pageable pageable) {		
+		return clienteControle.listarTodos(pageable);
+	}
+
+	@Override
 	@ApiOperation(value = "Retorna uma lista de clientes")
-	@GetMapping("/cliente")
-	public ResponseEntity<?> listaClientes(Pageable pageable) {
-		return new ResponseEntity<>(clienteRepository.findAll(pageable), HttpStatus.OK);
+	@GetMapping("")
+	public Iterable<Cliente> listarTodos() {		
+		return clienteControle.listarTodosNormal();
 	}
 
-	@ApiOperation(value = "Retorna um cliente unico")
-	@GetMapping("/cliente/{id}")
-	public Cliente listaClienteUnico(@PathVariable(value = "id") long id) {
-		verifyIfClienteExists(id);
-		return clienteRepository.findById(id);
+	@Override
+	@ApiOperation(value = "Retorna um unico cliente ")
+	@GetMapping("/{id}")
+	public Optional<Cliente> listar(@PathVariable(value="id") long id) {		
+		return clienteControle.listar(id);
 	}
 
+	@Override
 	@ApiOperation(value = "Salva um cliente")
-	@PostMapping("/cliente")
-	public Cliente salvaCliente(@RequestBody @Valid Cliente cliente) {
-		return clienteRepository.save(cliente);
+	@PostMapping("")
+	public Cliente salvar(@RequestBody @Valid Cliente modelo) {
+		return clienteControle.salvar(modelo);
 	}
 
-	@ApiOperation(value = "Deleta um cliente")
-	@DeleteMapping("/cliente")
-	public void deletaCliente(@RequestBody @Valid Cliente cliente) {
-		clienteRepository.delete(cliente);
-	}
-
+	@Override
 	@ApiOperation(value = "Atualiza um cliente")
-	@PutMapping("/cliente")
-	public Cliente atualizaCliente(@RequestBody @Valid Cliente cliente) {
-		return clienteRepository.save(cliente);
+	@PutMapping("")
+	public Cliente atualizar(@RequestBody @Valid Cliente modelo) {		
+		return clienteControle.atualizar(modelo);
 	}
 
-	private void verifyIfClienteExists(long id) {
-		if (clienteRepository.findById(id) == null) {
-			throw new ResourceNotFoundException("Cliente not found for ID: " + id);
-		}
+	@Override
+	@ApiOperation(value = "Deleta um cliente via Objeto")
+	@DeleteMapping("")
+	public void deletar(@RequestBody @Valid Cliente modelo) {		
+		clienteControle.deletar(modelo);
+		
+	}
 
+	@Override
+	@ApiOperation(value = "Deleta um cliente via Objeto")
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable(value="id") long id) {
+		clienteControle.deletarById(id);
 	}
 
 }

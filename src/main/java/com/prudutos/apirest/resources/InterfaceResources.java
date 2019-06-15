@@ -1,5 +1,7 @@
 package com.prudutos.apirest.resources;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 
 public interface InterfaceResources<MODELO> {
@@ -8,7 +10,7 @@ public interface InterfaceResources<MODELO> {
 	
 	public Iterable<MODELO> listarTodos();
 	
-	public MODELO listar( long id);
+	public Optional<MODELO> listar( long id);
 	
 	public MODELO salvar( MODELO modelo);
 	
