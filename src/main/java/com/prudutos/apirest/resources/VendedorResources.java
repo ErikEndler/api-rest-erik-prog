@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prudutos.apirest.errors.ResourceNotFoundException;
+import com.prudutos.apirest.controle.VendedorControle;
 import com.prudutos.apirest.models.Vendedor;
 import com.prudutos.apirest.repository.VendedorRepository;
 
@@ -30,30 +30,27 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = "*")
 public class VendedorResources implements InterfaceResources<Vendedor> {
 	@Autowired
-	VendedorRepository vendedorRepository;			
+	VendedorControle vendedoControle;			
 
 	@Override
 	@ApiOperation(value="Retorna uma lista de Vendedores com Pageable")
 	@GetMapping("/pageable")
 	public Iterable<Vendedor> listarTodosPagable(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedoControle.listarTodos(pageable);
 	}
 
 	@Override
 	@ApiOperation(value="Retorna uma lista de Vendedores")
 	@GetMapping("")
 	public Iterable<Vendedor> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedoControle.listarTodosNormal();
 	}
 
 	@Override
 	@ApiOperation(value="Retorna um Vendedor unico")
 	@GetMapping("/{id}")
 	public Optional<Vendedor> listar(@PathVariable(value="id") long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedoControle.listar(id);
 	}
 
 	@Override
@@ -61,7 +58,7 @@ public class VendedorResources implements InterfaceResources<Vendedor> {
 	@PostMapping("")
 	public Vendedor salvar(@RequestBody @Valid Vendedor modelo) {
 		// TODO Auto-generated method stub
-		return null;
+		return vendedoControle.salvar(modelo);
 	}
 
 	@Override
@@ -69,23 +66,21 @@ public class VendedorResources implements InterfaceResources<Vendedor> {
 	@PutMapping("")
 	public Vendedor atualizar(@RequestBody @Valid Vendedor modelo) {
 		// TODO Auto-generated method stub
-		return null;
+		return vendedoControle.atualizar(modelo);
 	}
 
 	@Override
 	@ApiOperation(value="Deleta um Vendedor (objeto)")
 	@DeleteMapping("")
-	public void deletar(@RequestBody @Valid Vendedor modelo) {
-		// TODO Auto-generated method stub
-		
+	public void deletar(@RequestBody @Valid Vendedor modelo) {		
+		vendedoControle.deletar(modelo);		
 	}
 
 	@Override
 	@ApiOperation(value="Deleta um Vendedor por ID")
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value="id") long id) {
-		// TODO Auto-generated method stub
-		
+		vendedoControle.deletarById(id);		
 	}
 
 }
