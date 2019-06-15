@@ -70,7 +70,7 @@ public class ProdutoResources implements InterfaceResources<Produto> {
 	}
 
 	@Override
-	@ApiOperation(value="Deleta um produto")
+	@ApiOperation(value="Deleta um produto (objeto)")
 	@DeleteMapping("")
 	public void deletar(@RequestBody @Valid Produto modelo) {
 		produtoControle.deletar(modelo);		

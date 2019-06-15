@@ -67,7 +67,7 @@ public class CategoriaResources implements InterfaceResources<Categoria> {
 	}
 
 	@Override
-	@ApiOperation(value = "Deleta uma categoria por envio e um Objeto")
+	@ApiOperation(value = "Deleta uma categoria (objeto)")
 	@DeleteMapping("")
 	public void deletar(@RequestBody @Valid Categoria categoria) {
 		controle.deletar(categoria);

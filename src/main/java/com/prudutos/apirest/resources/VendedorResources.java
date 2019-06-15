@@ -73,7 +73,7 @@ public class VendedorResources implements InterfaceResources<Vendedor> {
 	}
 
 	@Override
-	@ApiOperation(value="Deleta um Vendedor por Objeto")
+	@ApiOperation(value="Deleta um Vendedor (objeto)")
 	@DeleteMapping("")
 	public void deletar(@RequestBody @Valid Vendedor modelo) {
 		// TODO Auto-generated method stub

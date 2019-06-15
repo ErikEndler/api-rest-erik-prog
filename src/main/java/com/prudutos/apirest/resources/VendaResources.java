@@ -74,7 +74,7 @@ public class VendaResources implements InterfaceResources<Venda> {
 	}
 
 	@Override
-	@ApiOperation(value="Deleta uma venda")
+	@ApiOperation(value="Deleta uma venda (objeto)")
 	@DeleteMapping("")
 	public void deletar(@RequestBody @Valid Venda modelo) {
 		vendaControle.deletar(modelo);			

@@ -75,7 +75,7 @@ public class ClienteResources implements InterfaceResources<Cliente> {
 	}
 
 	@Override
-	@ApiOperation(value = "Deleta um cliente via Objeto")
+	@ApiOperation(value = "Deleta um cliente (objeto)")
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value="id") long id) {
 		clienteControle.deletarById(id);
