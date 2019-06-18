@@ -31,7 +31,7 @@ public class CategoriaResources implements InterfaceResources<Categoria> {
 	CategoriaControl2 controle = new CategoriaControl2();
 
 	@Override
-	@ApiOperation(value = "Retorna uma lista de Categorias Com Pagable")
+	@ApiOperation(value = "Retorna uma lista de Categorias Com Pageable")
 	@GetMapping("/Pagable")
 	public Iterable<Categoria> listarTodosPagable(Pageable pageable) {
 		return controle.listarTodos(pageable);
@@ -55,7 +55,6 @@ public class CategoriaResources implements InterfaceResources<Categoria> {
 	@ApiOperation(value = "Salva uma categoria")
 	@PostMapping("")
 	public Categoria salvar(@RequestBody @Valid Categoria categoria) {
-		// TODO Auto-generated method stub
 		return controle.salvar(categoria);
 	}
 

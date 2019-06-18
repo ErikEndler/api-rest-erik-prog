@@ -7,6 +7,10 @@ import com.prudutos.apirest.repository.ClienteRepository;
 
 @Service
 public class ClienteControle extends ControleGeneric<Cliente, ClienteRepository> {
-	protected String menssagem = "CLIENTE";
+	@Override
+	protected String MenssagemErro() {
+		String msg = "CLIENTE";
+		return msg;
+	}
 
 }

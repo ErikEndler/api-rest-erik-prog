@@ -15,8 +15,6 @@ import com.prudutos.apirest.models.AbstractModelo;
 @MappedSuperclass
 public abstract class ControleGeneric<MODELO extends AbstractModelo, REPOSITORIO extends PagingAndSortingRepository<MODELO, Long>> {
 
-	protected String menssagem = "Objeto";
-
 	@Autowired
 	REPOSITORIO repository;
 
@@ -27,11 +25,11 @@ public abstract class ControleGeneric<MODELO extends AbstractModelo, REPOSITORIO
 	}
 
 	public MODELO salvar(MODELO modelo) {
-		Optional<MODELO> ret =verifySave(modelo.getId());
-		if(ret.isPresent()) {
-			throw new  ResourceNotFoundException(this.menssagem +" existente para o  ID: "+modelo.getId());
-			
-		}else
+		Optional<MODELO> ret = verifySave(modelo.getId());
+		if (ret.isPresent()) {
+			throw new ResourceNotFoundException(MenssagemErro() + " existente para o  ID: " + modelo.getId());
+
+		} else
 			return (MODELO) repository.save(modelo);
 	}
 
@@ -59,13 +57,20 @@ public abstract class ControleGeneric<MODELO extends AbstractModelo, REPOSITORIO
 	}
 
 	private void verifyIfObjectExists(long id) {
-		Optional<MODELO> retorno=repository.findById(id);
-		retorno.orElseThrow(() -> new ResourceNotFoundException(this.menssagem + " nao encontrado para o ID: " + id));
+		String msg = MenssagemErro();
+		Optional<MODELO> retorno = repository.findById(id);
+		retorno.orElseThrow(() -> new ResourceNotFoundException(msg + " nao encontrado para o ID: " + id));
 	}
+
 	private Optional<MODELO> verifySave(long id) {
-		Optional<MODELO> retorno=repository.findById(id);
+		Optional<MODELO> retorno = repository.findById(id);
 		return retorno;
-		
+
+	}
+
+	protected String MenssagemErro() {
+		String msg = "Objeto";
+		return msg;
 	}
 
 }

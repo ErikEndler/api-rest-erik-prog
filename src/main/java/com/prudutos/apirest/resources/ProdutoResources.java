@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prudutos.apirest.controle.ProdutoControle;
-import com.prudutos.apirest.errors.ResourceNotFoundException;
 import com.prudutos.apirest.models.Produto;
-import com.prudutos.apirest.repository.ProdutoRepository;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

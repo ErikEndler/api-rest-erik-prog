@@ -14,7 +14,7 @@ public class PageSourceConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		PageableHandlerMethodArgumentResolver phmar = new PageableHandlerMethodArgumentResolver();
-		phmar.setFallbackPageable(new PageRequest(0, 2));
+		phmar.setFallbackPageable(new PageRequest(0, 5));
 		argumentResolvers.add(phmar);
 	}
 }

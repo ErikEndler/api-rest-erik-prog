@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prudutos.apirest.controle.VendedorControle;
 import com.prudutos.apirest.models.Vendedor;
-import com.prudutos.apirest.repository.VendedorRepository;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -57,7 +55,6 @@ public class VendedorResources implements InterfaceResources<Vendedor> {
 	@ApiOperation(value="Salva um Vendedor")
 	@PostMapping("")
 	public Vendedor salvar(@RequestBody @Valid Vendedor modelo) {
-		// TODO Auto-generated method stub
 		return vendedoControle.salvar(modelo);
 	}
 
@@ -65,7 +62,6 @@ public class VendedorResources implements InterfaceResources<Vendedor> {
 	@ApiOperation(value="Atualiza um Vendedor")
 	@PutMapping("")
 	public Vendedor atualizar(@RequestBody @Valid Vendedor modelo) {
-		// TODO Auto-generated method stub
 		return vendedoControle.atualizar(modelo);
 	}
 

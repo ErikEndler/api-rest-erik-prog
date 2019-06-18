@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prudutos.apirest.controle.VendaControle;
-import com.prudutos.apirest.errors.ResourceNotFoundException;
 import com.prudutos.apirest.models.Venda;
-import com.prudutos.apirest.repository.VendaRepository;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -45,7 +42,6 @@ public class VendaResources implements InterfaceResources<Venda> {
 	@ApiOperation(value="Retorna uma lista de vendas")
 	@GetMapping("")
 	public Iterable<Venda> listarTodos() {
-		// TODO Auto-generated method stub
 		return vendaControle.listarTodosNormal();
 	}
 
@@ -53,7 +49,6 @@ public class VendaResources implements InterfaceResources<Venda> {
 	@ApiOperation(value="Retorna uma venda unico")
 	@GetMapping("/{id}")
 	public Optional<Venda> listar(@PathVariable(value="id") long id) {
-		// TODO Auto-generated method stub
 		return vendaControle.listar(id);
 	}
 
@@ -61,7 +56,6 @@ public class VendaResources implements InterfaceResources<Venda> {
 	@ApiOperation(value="Salva uma venda")
 	@PostMapping("")
 	public Venda salvar(@RequestBody @Valid Venda modelo) {
-		// TODO Auto-generated method stub
 		return vendaControle.salvar(modelo);
 	}
 
@@ -69,7 +63,6 @@ public class VendaResources implements InterfaceResources<Venda> {
 	@ApiOperation(value="Atualiza uma venda")
 	@PutMapping("")
 	public Venda atualizar(@RequestBody @Valid Venda modelo) {
-		// TODO Auto-generated method stub
 		return vendaControle.atualizar(modelo);
 	}
 

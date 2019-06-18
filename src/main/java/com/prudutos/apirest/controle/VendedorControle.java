@@ -7,5 +7,10 @@ import com.prudutos.apirest.repository.VendedorRepository;
 
 @Service
 public class VendedorControle extends ControleGeneric<Vendedor, VendedorRepository> {
+	@Override
+	protected String MenssagemErro() {
+		String msg = "VENDEDOR";
+		return msg;
+	}
 
 }

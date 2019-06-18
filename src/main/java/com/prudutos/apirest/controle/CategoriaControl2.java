@@ -7,5 +7,10 @@ import com.prudutos.apirest.repository.CategoriaRepository;
 
 @Service
 public class CategoriaControl2 extends ControleGeneric<Categoria, CategoriaRepository> {
-	 String menssagem = "CATEGORIA";
+
+	@Override
+	protected String MenssagemErro() {
+		String msg = "CATEGORIA";
+		return msg;
+	}
 }
